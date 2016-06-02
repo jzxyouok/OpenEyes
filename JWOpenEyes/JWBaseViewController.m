@@ -19,6 +19,7 @@
 @implementation JWBaseViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
    
     self.todayVC = [[JWTodayTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -26,12 +27,7 @@
     baseNav.navigationBar.translucent = NO;
     [self addChildViewController:baseNav];
     [self.view addSubview:baseNav.view];
+    
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end
