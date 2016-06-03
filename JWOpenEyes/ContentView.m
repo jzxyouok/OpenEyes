@@ -11,7 +11,7 @@
 
 @implementation ContentView
 
-- (instancetype)initWithFrame:(CGRect)frame width:(CGFloat)width model:(EveryDayModel *)model color:(UIColor *)color {
+- (instancetype)initWithFrame:(CGRect)frame width:(CGFloat)width model:(TodayModel *)model color:(UIColor *)color {
     
     if (self = [super initWithFrame:frame]) {
         
@@ -62,9 +62,35 @@
     return self;
 }
 
-- (void)setData:(EveryDayModel *)model {
+- (void)setData:(TodayModel *)model {
     
+    self.titleLabel.text = model.title;
+    self.descriptionLabel.text = model.descrip;
+    [self.shareCustom setTitle:model.shareCount];
+    [self.replyCustom setTitle:model.replyCount];
+    [self.collectionCustom setTitle:model.collectionCount];
     
+    NSInteger time = [model.duration integerValue];
+    NSString *timeString = [NSString stringWithFormat:@"%02ld'%02ld''", time / 60, time % 60]; // 显示的是音乐的总时间
+    NSString *string = [NSString stringWithFormat:@"#%@ / %@", model.category, timeString];
+    self.littleLabel.text = string;
+    
+    __weak typeof(self) weakSelf = self;
+    [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:model.coverBlurred] options:SDWebImageRetryFailed progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+        
+        if (image) {
+            
+            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"contents"];
+            animation.duration  = 1.0f;
+            animation.fromValue = self.imageView.image;
+            animation.toValue   = image;
+            
+            animation.removedOnCompletion = YES;
+            animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            [weakSelf.imageView.layer addAnimation:animation forKey:nil];
+            weakSelf.imageView.image = image;
+        }
+    }];
 }
 
 @end

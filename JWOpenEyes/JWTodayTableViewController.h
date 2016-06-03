@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PictureView;
 
 @interface JWTodayTableViewController : UITableViewController
+
+@property (nonatomic, strong) PictureView *pictureView;
+
+@property (nonatomic, strong) UIImageView *blurredView;
+
+@property (nonatomic, strong) NSArray *array;
+
+@property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
 @end

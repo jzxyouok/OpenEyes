@@ -31,9 +31,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
                         width:(CGFloat)width
-                        model:(EveryDayModel *)model
+                        model:(TodayModel *)model
                         color:(UIColor *)color;
 
-- (void)setData:(EveryDayModel *)model;
+- (void)setData:(TodayModel *)model;
 
 @end
