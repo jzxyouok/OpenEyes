@@ -18,9 +18,10 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone; // 去掉选中效果
         self.clipsToBounds = YES;
         
-        self.picture = [[UIImageView alloc] initWithFrame:CGRectMake(0, -(kWidth / 1.7 - 250) / 2, kWidth, kHeight / 1.7)];
+        self.picture = [[UIImageView alloc] initWithFrame:CGRectMake(0, -(kHeight / 1.7 - 250) / 2, kWidth, kHeight / 1.7)];
+        
         self.picture.contentMode = UIViewContentModeScaleAspectFill;
-        [self addSubview:self.picture];
+        [self.contentView addSubview:self.picture];
         
         self.coverview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 250)];
         self.coverview.backgroundColor = [UIColor colorWithWhite:0 alpha:0.33];

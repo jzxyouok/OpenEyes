@@ -10,6 +10,7 @@
 #import "ImageContentView.h"
 #import "TodayModel.h"
 
+
 @interface ContentScrollView()
 
 @property (nonatomic, assign, readwrite) NSInteger currentIndex;
